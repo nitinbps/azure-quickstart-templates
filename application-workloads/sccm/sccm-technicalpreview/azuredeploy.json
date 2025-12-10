@@ -312,6 +312,10 @@
       "apiVersion": "2022-07-01",
       "name": "[concat(toLower(parameters('prefix')),toLower(if(less(copyIndex(),length(variables('vmInfo'))),variables('vmInfo')[variables('vmRole')[copyIndex()]].name,if(greaterOrEquals(copyIndex(),add(length(variables('vmInfo')),length(variables('siteInfo')))),variables('clientInfo')[sub(copyIndex(),add(length(variables('vmInfo')),length(variables('siteInfo'))))][variables('clientRole')[sub(copyIndex(),add(length(variables('vmInfo')),length(variables('siteInfo'))))]].name,variables('siteInfo')[variables('siteRole')[sub(copyIndex(),length(variables('vmInfo')))]].name))), '-ip')]",
       "location": "[parameters('location')]",
+      "sku": {
+         "name": "Standard",
+          "tier": "Regional"
+      },
       "copy": {
         "name": "ipvmcopy",
         "count": "[add(add(length(variables('vmInfo')),length(variables('siteInfo'))),length(variables('clientRole')))]"
